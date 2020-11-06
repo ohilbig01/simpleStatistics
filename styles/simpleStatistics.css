@@ -1,0 +1,38 @@
+.simpleStatistics_value {
+	float: right;
+}
+
+#simpleStatistics_item {
+	padding: 0;
+	margin-left: 0;
+	margin-bottom: 0;
+}
+
+.simpleStatistics_views {
+	list-style:none;
+	transition: background-color 0.4s;
+}
+
+.simpleStatistics_views::before {
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    transform: translate(0, 0);
+    content: '\f06e';
+}
+
+.simpleStatistics_downloads {
+	list-style:none;
+	transition: background-color 0.4s;
+}
+
+.simpleStatistics_downloads::before {
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    transform: translate(0, 0);
+    content: '\f019';
+}
+

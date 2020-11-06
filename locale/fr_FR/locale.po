@@ -1,0 +1,27 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2020-09-22T10:22:59+00:00\n"
+"PO-Revision-Date: 2020-09-22T10:22:59+00:00\n"
+"Language: \n"
+
+msgid "plugins.generic.simpleStatistics.displayName"
+msgstr "SimpleStatistics"
+
+msgid "plugins.generic.simpleStatistics.description"
+msgstr "Affichage cumulatif des vues et des téléchargements."
+
+msgid "plugins.generic.simpleStatistics.headline"
+msgstr "Métrique"
+
+msgid "plugins.generic.simpleStatistics.downloads"
+msgstr "downloads"
+
+msgid "plugins.generic.simpleStatistics.views"
+msgstr "views"
