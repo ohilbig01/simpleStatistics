@@ -12,7 +12,7 @@ The hook has to be placed either in
 ```
 ./templates/frontend/objects/article_details.tpl
 ```
-or in the article_details.tpl of the theme used.
+or in the article_details.tpl of the theme being used.
 
 
 For this plugin to work, the Usage Statistics Plugin must be enabled.
