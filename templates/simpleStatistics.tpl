@@ -19,7 +19,11 @@
 			{if $galleyCount > 0}
 				{for $i=0 to $galleyCount - 1}
 					<li class="simpleStatistics_downloads">
-                                		{$galleyLabels[$i]} {translate key="plugins.generic.simpleStatistics.downloads"}: <div class="simpleStatistics_value">{$galleyDownloads[$i]}</div>
+						{if $galleyLabels[$i]|stristr:"HTML"} 
+                                			{$galleyLabels[$i]} {translate key="plugins.generic.simpleStatistics.views"}: <div class="simpleStatistics_value">{$galleyDownloads[$i]}</div>
+						{else}
+                                			{$galleyLabels[$i]} {translate key="plugins.generic.simpleStatistics.downloads"}: <div class="simpleStatistics_value">{$galleyDownloads[$i]}</div>
+						{/if}
 					</li>
 				{/for}	
 			{/if}
