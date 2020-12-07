@@ -9,7 +9,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "POT-Creation-Date: 2020-09-22T10:22:59+00:00\n"
 "PO-Revision-Date: 2020-09-22T10:22:59+00:00\n"
-"Language: \n"
+"Language: pt_PT\n"
 
 msgid "plugins.generic.simpleStatistics.displayName"
 msgstr "SimpleStatistics"
@@ -20,9 +20,9 @@ msgstr "Exibição cumulativa de visualizações e downloads."
 msgid "plugins.generic.simpleStatistics.headline"
 msgstr "Metrics"
 
-msgid "plugins.generic.simpleStatistics.downloads"
-msgstr "downloads"
+msgid "plugins.generic.simpleStatistics.infotext"
+msgstr "Views/Downloads"
 
-msgid "plugins.generic.simpleStatistics.views"
-msgstr "views"
+msgid "plugins.generic.simpleStatistics.linkText"
+msgstr "Outras informações"
 

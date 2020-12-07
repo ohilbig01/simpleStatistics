@@ -115,7 +115,7 @@ class SimpleStatisticsPlugin extends GenericPlugin {
 		$templateMgr->assign('galleyLabels', $galleyLabels);
 		$templateMgr->assign('galleyCount', count($galleyLabels));
 
-                $output = $templateMgr->fetch($this->getTemplateResource('simpleStatistics.tpl')) . $output;
+                $output = $templateMgr->fetch($this->getTemplateResource('simpleStatistics.tpl'));
 
                 return false;
         }

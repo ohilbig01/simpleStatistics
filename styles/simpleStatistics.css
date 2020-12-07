@@ -3,8 +3,9 @@
 }
 
 #simpleStatistics_item {
-	padding: 0;
+	padding: 8px 0;
 	margin-left: 0;
+	margin-top: 0;
 	margin-bottom: 0;
 }
 
@@ -27,6 +28,7 @@
 	transition: background-color 0.4s;
 }
 
+
 .simpleStatistics_downloads::before {
     display: inline-block;
     font: normal normal normal 14px/1 FontAwesome;
@@ -36,3 +38,30 @@
     content: '\f019';
 }
 
+.simpleStatistics_media {
+	list-style:none;
+	transition: background-color 0.4s;
+}
+
+.simpleStatistics_media::before {
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    transform: translate(0, 0);
+    content: "\f04b";
+}
+
+.simpleStatistics_label {
+	padding-left: 3px;
+}
+
+.simpleStatistics_infotext {
+	font-size: 13px;
+	color: rgba(0,0,0,0.54);
+	font-weight: 400;
+}
+
+.simpleStatistics_link {
+	font-size: 13px;
+}

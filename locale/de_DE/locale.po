@@ -20,8 +20,9 @@ msgstr "Kumulative Anzeige von Aufrufen und Downloads."
 msgid "plugins.generic.simpleStatistics.headline"
 msgstr "Metriken"
 
-msgid "plugins.generic.simpleStatistics.downloads"
-msgstr "heruntergeladen"
+msgid "plugins.generic.simpleStatistics.infotext"
+msgstr "Views/Downloads"
 
-msgid "plugins.generic.simpleStatistics.views"
-msgstr "aufgerufen"
+msgid "plugins.generic.simpleStatistics.linkText"
+msgstr "Weitere Informationen"
+
