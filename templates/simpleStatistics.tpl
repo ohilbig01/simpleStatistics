@@ -36,7 +36,7 @@
 			{/if}
                 </ul>
 		{* Link for further information *}
-		{* <a class=simpleStatistics_link" href="/ojsdemo/modpub/metrics">{translate key="plugins.generic.simpleStatistics.linkText"}</a> *}
+		{* <a class="simpleStatistics_link" href="/ojsdemo/modpub/metrics">{translate key="plugins.generic.simpleStatistics.linkText"}</a> *}
 		{* <div class="simpleStatistics_downloads">Total Galley Downloads: <div class="simpleStatistics_value">{$galleyViewTotal}</div></div> *}
         </div>
 </div>
