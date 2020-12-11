@@ -114,6 +114,7 @@ class SimpleStatisticsPlugin extends GenericPlugin {
 		$templateMgr->assign('galleyDownloads', $galleyViews);
 		$templateMgr->assign('galleyLabels', $galleyLabels);
 		$templateMgr->assign('galleyCount', count($galleyLabels));
+		$templateMgr->assign('journalPath', $request->getJournal()->getPath());
 
                 $output = $templateMgr->fetch($this->getTemplateResource('simpleStatistics.tpl'));
 
