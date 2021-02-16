@@ -23,7 +23,7 @@
 				{for $i=0 to $galleyCount - 1}
 					{if $galleyLabels[$i]|stristr:"html" or $galleyLabels[$i]|stristr:"jats"}
 						<li class="simpleStatistics_views">
-					{elseif $galleyLabels[$i]|stristr:"audio"}
+					{elseif $galleyLabels[$i]|stristr:"audio" or $galleyLabels[$i]|stristr:"podcast"}
 						<li class="simpleStatistics_media">
 					{elseif $galleyLabels[$i]|stristr:"video"}
 						<li class="simpleStatistics_media">
