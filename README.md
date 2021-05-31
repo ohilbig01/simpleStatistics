@@ -20,7 +20,7 @@ For this plugin to work, the Usage Statistics Plugin must be enabled.
 
 System requirements
 --------------------
-OJS version 3.2.1 
+OJS version 3.2.1+
 
 
 
