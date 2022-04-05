@@ -21,7 +21,7 @@ msgid "plugins.generic.simpleStatistics.headline"
 msgstr "Métrique"
 
 msgid "plugins.generic.simpleStatistics.infotext"
-msgstr "Views/Downloads"
+msgstr "Vues/Téléchargements"
 
 msgid "plugins.generic.simpleStatistics.linkText"
 msgstr "Informations complémentaires"
