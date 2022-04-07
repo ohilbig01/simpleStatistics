@@ -18,7 +18,7 @@ msgid "plugins.generic.simpleStatistics.description"
 msgstr "Affichage cumulatif des vues et des téléchargements."
 
 msgid "plugins.generic.simpleStatistics.headline"
-msgstr "Métrique"
+msgstr "Métriques"
 
 msgid "plugins.generic.simpleStatistics.infotext"
 msgstr "Vues/Téléchargements"
