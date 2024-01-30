@@ -15,12 +15,11 @@ The hook has to be placed either in
 or in the article_details.tpl of the theme being used.
 
 
-For this plugin to work, the Usage Statistics Plugin must be enabled.
 
 
 System requirements
 --------------------
-OJS version 3.2.1+
+OJS version 3.4.0 
 
 
 

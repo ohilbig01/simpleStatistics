@@ -52,6 +52,20 @@
     content: "\f04b";
 }
 
+.simpleStatistics_supplements {
+	list-style:none;
+	transition: background-color 0.4s;
+}
+
+.simpleStatistics_supplements::before {
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    transform: translate(0, 0);
+    content: "\f0c6";
+}
+
 .simpleStatistics_label {
 	padding-left: 3px;
 }

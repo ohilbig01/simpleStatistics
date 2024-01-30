@@ -13,8 +13,8 @@
 <version>
 	<application>simpleStatistics</application>
 	<type>plugins.generic</type>
-	<release>1.0.0.1</release>
-	<date>2020-09-18</date>
+	<release>2.0.0.0</release>
+	<date>2024-01-26</date>
 	<lazy-load>1</lazy-load>
 	<class>SimpleStatisticsPlugin</class>
 </version>
