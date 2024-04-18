@@ -84,7 +84,9 @@ class SimpleStatisticsPlugin extends GenericPlugin {
 				// remove "(English)" etc. from label
 				$label = preg_replace("/\(\w+\)/", "", $galley->getGalleyLabel($label));
 
-				$file = $galley->getFile();
+				// next if there's no corresponding file (remote galley)
+				if (!$file = $galley->getFile()) continue;
+
 				$i = array_search($label, $galleyLabels);
 				if ($i === false) {
 					$i = count($galleyLabels);
