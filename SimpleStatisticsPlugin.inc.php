@@ -11,7 +11,9 @@
  *
  * @brief SimpleStatistics plugin class
  */
- 
+
+define('MAX_LABEL_LENGTH', 28);
+
 import('lib.pkp.classes.plugins.GenericPlugin');
 
 class SimpleStatisticsPlugin extends GenericPlugin {
@@ -113,6 +115,7 @@ class SimpleStatisticsPlugin extends GenericPlugin {
 		$templateMgr->assign('galleyLabels', $galleyLabels);
 		$templateMgr->assign('galleyCount', count($galleyLabels));
 		$templateMgr->assign('journalPath', $request->getJournal()->getPath());
+		$templateMgr->assign('maxLabelLength', MAX_LABEL_LENGTH);
 
                 $output = $templateMgr->fetch($this->getTemplateResource('simpleStatistics.tpl'));
 
