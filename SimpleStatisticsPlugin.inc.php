@@ -2,8 +2,8 @@
 /**
  * @file plugins/generic/simpleStatistics/SimpleStatisticsPlugin.inc.php
  *
- * Copyright (c) 2014-2021 Simon Fraser University
- * Copyright (c) 2003-2021 John Willinsky
+ * Copyright (c) 2014-2025 Simon Fraser University
+ * Copyright (c) 2003-2025 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class SimpleStatisticsPlugin
@@ -13,11 +13,11 @@
  */
 
 define('MAX_LABEL_LENGTH', 28);
-
+ 
 import('lib.pkp.classes.plugins.GenericPlugin');
 
-class SimpleStatisticsPlugin extends GenericPlugin {
-
+class SimpleStatisticsPlugin extends GenericPlugin
+{
 	function register($category, $path, $mainContextId = null) {
 		if (parent::register($category, $path, $mainContextId)) {
 			if ($this->getEnabled($mainContextId)) {
@@ -44,18 +44,64 @@ class SimpleStatisticsPlugin extends GenericPlugin {
 	}
 
 
+
+	/*
+	 * see lib/pkp/api/v1/stats/publications/PKPStatsPublicationHandler.inc.php
+	 */
+	function getAllViews($request, $articleId)
+	{
+		// Get the earliest date of publication
+		$contextId = $request->getContext()->getId();
+		$dateRange = Services::get('publication')->getDateBoundaries(['contextIds' => $contextId]);
+		$allowedParams['dateStart'] = $dateRange[0];
+                //$allowedParams['dateEnd'] = date('Y-m-d', strtotime('yesterday'));
+                $allowedParams['submissionIds'] = $articleId;
+                $allowedParams['contextIds'] = $contextId;
+
+                $statsService = Services::get('stats');
+
+		// Get the abstract records
+                $abstractRecords = $statsService->getRecords(array_merge($allowedParams, [
+                        'assocTypes' => [ASSOC_TYPE_SUBMISSION],
+			'submissionIds' => [$articleId],
+                ]));
+                $abstractViews = array_reduce($abstractRecords, [$statsService, 'sumMetric'], 0);
+
+                // Get the galley totals for each file type (pdf, html, other)
+                $galleyRecords = $statsService->getRecords(array_merge($allowedParams, [
+                        'assocTypes' => [ASSOC_TYPE_SUBMISSION_FILE],
+                ]));
+                $galleyViews = array_reduce($galleyRecords, [$statsService, 'sumMetric'], 0);
+                $pdfViews = array_reduce(array_filter($galleyRecords, [$statsService, 'filterRecordPdf']), [$statsService, 'sumMetric'], 0);
+                $htmlViews = array_reduce(array_filter($galleyRecords, [$statsService, 'filterRecordHtml']), [$statsService, 'sumMetric'], 0);
+                $otherViews = array_reduce(array_filter($galleyRecords, [$statsService, 'filterRecordOther']), [$statsService, 'sumMetric'], 0);
+
+		return [
+                        'abstractViews' => $abstractViews,
+                        'galleyViews' => $galleyViews,
+                        'pdfViews' => $pdfViews,
+                        'htmlViews' => $htmlViews,
+                        'otherViews' => $otherViews,
+                ];
+	}
+
+
         /**
          * Add stuff to article details page
          * @param $hookName string
          * @param $params array
          */
-        function addStatistics($hookName, $params) {
+	function addStatistics($hookName, $params)
+       	{
                 $templateMgr =& $params[1];
                 $output =& $params[2];
 
                 $request = $this->getRequest();
 		$journal = $request->getContext();
                 $publishedArticle = $templateMgr->get_template_vars('article');
+
+		$metrics = $this->getAllViews($request, $publishedArticle->getId());
+		//error_log("SimpleStatistic metrics: " . var_export($metrics, true));
 
  		// Add Style
                 $cssUrl = $request->getBaseUrl() . '/' . $this->getPluginPath() . '/styles/simpleStatistics.css';
@@ -81,7 +127,6 @@ class SimpleStatisticsPlugin extends GenericPlugin {
 
 
 			$galleyViews = array();
-			$galleyViewTotal = 0;
 			foreach ($galleys as $galley) {
 				// remove "(English)" etc. from label
 				$label = preg_replace("/\(\w+\)/", "", $galley->getGalleyLabel($label));
@@ -105,13 +150,21 @@ class SimpleStatisticsPlugin extends GenericPlugin {
 				else  {
 					error_log('SimpleStatistics: unknown galley!');
 				}
-				$galleyViews[$i] = $views;
-				$galleyViewTotal += $views;
+				// if it starts with 'pdf' or 'htm' (case insensitive)
+				if (stripos($galleyLabels[$i], "pdf") === 0) {
+					//$galleyViews[$i] = $views;
+					$galleyViews[$i] = $metrics['pdfViews'];
+				} elseif (stripos($galleyLabels[$i], "htm") === 0) {
+					//$galleyViews[$i] = $views;
+					$galleyViews[$i] = $metrics['htmlViews'];
+				} else {
+					$galleyViews[$i] = $views;
+				}
 			}
 		}
 
-		$templateMgr->assign('galleyViewTotal', $galleyViewTotal);
 		$templateMgr->assign('galleyDownloads', $galleyViews);
+		$templateMgr->assign('abstractViews', $metrics['abstractViews']); // same as $article->getViews()
 		$templateMgr->assign('galleyLabels', $galleyLabels);
 		$templateMgr->assign('galleyCount', count($galleyLabels));
 		$templateMgr->assign('journalPath', $request->getJournal()->getPath());
@@ -122,4 +175,3 @@ class SimpleStatisticsPlugin extends GenericPlugin {
                 return false;
         }
 }
-?>

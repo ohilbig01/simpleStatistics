@@ -17,7 +17,7 @@
                	</div>
                 <ul class="item" id="simpleStatistics_item">
                     <li class="simpleStatistics_views">
-			<span class="simpleStatistics_label">{translate key="article.abstract"}</span><div class="simpleStatistics_value">{$article->getViews()}</div>
+			<span class="simpleStatistics_label">{translate key="article.abstract"}</span><div class="simpleStatistics_value">{$abstractViews}</div>
                     </li>
 			{if $galleyCount > 0}
 				{for $i=0 to $galleyCount - 1}
@@ -36,10 +36,6 @@
 			{/if}
                 </ul>
 		{* Link for further information *}
-		{*<a class="simpleStatistics_link" href="{url journal=$journalPath}/metrics">{translate key="plugins.generic.simpleStatistics.linkText"}</a>*}
-		{* <div class="simpleStatistics_downloads">Total Galley Downloads: <div class="simpleStatistics_value">{$galleyViewTotal}</div></div> *}
+		{* <a class="simpleStatistics_link" href="{url journal=$journalPath}/metrics">{translate key="plugins.generic.simpleStatistics.linkText"}</a> *}
         </div>
 </div>
-
-
-
