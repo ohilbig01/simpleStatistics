@@ -50,7 +50,7 @@
 						{else}
 							<li class="simpleStatistics_downloads">
 						{/if}
-								<span class="simpleStatistics_label">{$galleyLabels[$i]}</span><div class="simpleStatistics_value">{$galleyDownloads[$i]}</div>
+								<span class="simpleStatistics_label">{$galleyLabels[$i]|truncate:$maxLabelLength:"...":true}</span><div class="simpleStatistics_value">{$galleyDownloads[$i]}</div>
 						</li>
 					{/for}	
 

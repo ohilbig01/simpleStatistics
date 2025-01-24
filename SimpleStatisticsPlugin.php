@@ -23,7 +23,11 @@ use PKP\db\DAORegistry;
 use APP\facades\Repo;
 use APP\statistics\StatisticsHelper;
 
+// show views of supplementary files as a whole or separately
 define('DISPLAY_COMBINED_SUPP_FILE_VIEWS', false);
+
+// limit the length of the labels to be displayed
+define('MAX_LABEL_LENGTH', 28);
 
 class SimpleStatisticsPlugin extends GenericPlugin {
 	public function register($category, $path, $mainContextId = null)
@@ -163,11 +167,12 @@ class SimpleStatisticsPlugin extends GenericPlugin {
 		//error_log('galleyLabels:' . var_export($galleyLabels, true));
 		//error_log('galleyTypes:' . var_export($galleyTypes, true));
 
-		// TODO: $suppFileLabels possible alternative to label "Supplements", maybe shorten with dots...?
+		// TODO: $suppFileLabels possible alternative to label "Supplements"
 		if ($labels) $suppFileLabels = implode(', ', $labels); 
 
 		$templateMgr->assign('displayCombinedSuppFileViews', DISPLAY_COMBINED_SUPP_FILE_VIEWS);
 		$templateMgr->assign('abstractMetric', $metricsByType['abstract']);
+		$templateMgr->assign('maxLabelLength', MAX_LABEL_LENGTH);
 
 		if (DISPLAY_COMBINED_SUPP_FILE_VIEWS) {
 			$templateMgr->assign('pdfMetric', $metricsByType['pdf']);
@@ -190,6 +195,7 @@ class SimpleStatisticsPlugin extends GenericPlugin {
                 return false;
         }
 
+	// TODO
 	private function getLabelType($label): string
 	{
 		$lowercaseInput = strtolower($label);
