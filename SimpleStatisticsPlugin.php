@@ -103,6 +103,16 @@ class SimpleStatisticsPlugin extends GenericPlugin {
 				return $genre->getId();
 			}, $supplementaryGenres);
 
+			// date range
+			$dateRange = Repo::publication()->getDateBoundaries(
+				Repo::publication()
+					->getCollector()
+					->filterByContextIds([$this->getRequest()->getContext()->getId()])
+				);
+			//$dateStart = StatisticsHelper::STATISTICS_EARLIEST_DATE;
+			$dateStart = $dateRange->min_date_published;
+			$dateEnd = date('Y-m-d', strtotime('yesterday'));
+
 
 			$galleyViews = array();
 			$galleyViewsTotal = 0;
@@ -129,8 +139,8 @@ class SimpleStatisticsPlugin extends GenericPlugin {
 					//error_log("primary fileId, GenreId, Label: $fileId, " . $file->getGenreId() . ", $label");
 
 					$filters = [
-						'dateStart' => StatisticsHelper::STATISTICS_EARLIEST_DATE,
-						'dateEnd' => date('Y-m-d', strtotime('yesterday')),
+						'dateStart' => $dateStart,
+						'dateEnd' => $dateEnd,
 						'contextIds' => [$journal->getId()],
 						'submissionFileIds' => [$fileId],
 						];
@@ -142,8 +152,8 @@ class SimpleStatisticsPlugin extends GenericPlugin {
 					//error_log("supp fileId, GenreId, Label: $fileId, " . $file->getGenreId() . ", $label");
 
 					$filters = [
-						'dateStart' => StatisticsHelper::STATISTICS_EARLIEST_DATE,
-						'dateEnd' => date('Y-m-d', strtotime('yesterday')),
+						'dateStart' => $dateStart,
+						'dateEnd' => $dateEnd,
 						'contextIds' => [$journal->getId()],
 						'submissionFileIds' => [$fileId],
 						];
@@ -167,7 +177,7 @@ class SimpleStatisticsPlugin extends GenericPlugin {
 		//error_log('galleyLabels:' . var_export($galleyLabels, true));
 		//error_log('galleyTypes:' . var_export($galleyTypes, true));
 
-		// TODO: $suppFileLabels possible alternative to label "Supplements"
+		// TODO: string $suppFileLabels as alternative to label "Supplements"?
 		if ($labels) $suppFileLabels = implode(', ', $labels); 
 
 		$templateMgr->assign('displayCombinedSuppFileViews', DISPLAY_COMBINED_SUPP_FILE_VIEWS);
@@ -195,7 +205,6 @@ class SimpleStatisticsPlugin extends GenericPlugin {
                 return false;
         }
 
-	// TODO
 	private function getLabelType($label): string
 	{
 		$lowercaseInput = strtolower($label);
